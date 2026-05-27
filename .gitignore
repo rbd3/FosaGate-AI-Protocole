@@ -1,0 +1,24 @@
+# Foundry compilation artifacts
+out/
+cache/
+broadcast/
+coverage/
+lcov.info
+*.lcov
+gas-snapshot
+
+# Stylus Rust artifacts
+stylus/target/
+
+# Local configuration & environment variables
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store

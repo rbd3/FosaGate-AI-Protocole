@@ -2,15 +2,12 @@
 pragma solidity ^0.8.24;
 
 /**
- * ╔═══════════════════════════════════════════════════════════════════════════╗
- * ║                          FosaGate AI Protocol                           ║
- * ║           Pre-Flight Evaluation Layer for Agent Transactions            ║
- * ║                                                                         ║
- * ║  Contract : FosaGateRouter                                              ║
- * ║  Author   : rbd3                                                        ║
- * ║  Chain    : Arbitrum One / Arbitrum Sepolia                              ║
- * ║  Version  : 1.0.0                                                       ║
- * ╚═══════════════════════════════════════════════════════════════════════╝
+ * @title FosaGate AI Protocol
+ * @notice Pre-Flight Evaluation Layer for Agent Transactions
+ * @dev Contract : FosaGateRouter
+ *      Author   : rbd3
+ *      Chain    : Arbitrum One / Arbitrum Sepolia
+ *      Version  : 1.0.0
  */
 
 import {IFosaGateRouter} from "./interfaces/IFosaGateRouter.sol";

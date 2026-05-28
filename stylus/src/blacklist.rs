@@ -4,7 +4,17 @@
 // Merkle proof verification for the malicious calldata pattern blacklist.
 // Verifies non-membership: proves a transaction's calldata is NOT in the blacklist.
 
-use alloy_primitives::B256;
+use stylus_sdk::alloy_primitives::B256;
+use tiny_keccak::{Hasher, Keccak};
+
+/// Helper for Keccak256 hashing
+fn keccak256(data: &[u8]) -> [u8; 32] {
+    let mut hasher = Keccak::v256();
+    let mut result = [0u8; 32];
+    hasher.update(data);
+    hasher.finalize(&mut result);
+    result
+}
 
 /// Verify a Merkle non-membership proof.
 ///
@@ -23,25 +33,25 @@ use alloy_primitives::B256;
 /// - `true` if calldata_hash is confirmed NOT in the blacklist
 /// - `true` if blacklist_root is zero (no blacklist configured)
 /// - `false` if proof shows calldata_hash IS in the blacklist
-///
-/// # Merkle Proof Algorithm
-/// 1. Start with leaf = calldata_hash
-/// 2. For each proof element:
-///    - If leaf < proof[i]: hash = keccak256(leaf ++ proof[i])
-///    - Else:               hash = keccak256(proof[i] ++ leaf)
-/// 3. If final hash == blacklist_root → leaf IS in tree → return false
-/// 4. If final hash != blacklist_root → leaf NOT in tree → return true
 pub fn verify_not_blacklisted(
-    _calldata_hash: B256,
-    _blacklist_root: B256,
-    _proof: &[B256],
+    calldata_hash: B256,
+    blacklist_root: B256,
+    proof: &[B256],
 ) -> bool {
-    // TODO:
     // 1. If blacklist_root is zero, return true (no blacklist active)
+    if blacklist_root == B256::ZERO {
+        return true;
+    }
+
     // 2. Walk the Merkle proof from leaf to root
+    let mut computed_hash = calldata_hash;
+    for sibling in proof {
+        computed_hash = hash_pair(computed_hash, *sibling);
+    }
+
     // 3. If computed root == blacklist_root, the hash IS blacklisted → return false
     // 4. Otherwise → return true
-    todo!()
+    computed_hash != blacklist_root
 }
 
 /// Compute keccak256 of two concatenated 32-byte values (sorted).
@@ -51,7 +61,14 @@ pub fn verify_not_blacklisted(
 /// If a >= b: returns keccak256(b ++ a)
 ///
 /// Sorting ensures consistent hashing regardless of proof direction.
-pub fn hash_pair(_a: B256, _b: B256) -> B256 {
-    // TODO: Concatenate in sorted order, keccak256
-    todo!()
+pub fn hash_pair(a: B256, b: B256) -> B256 {
+    let mut concat = [0u8; 64];
+    if a < b {
+        concat[0..32].copy_from_slice(a.as_slice());
+        concat[32..64].copy_from_slice(b.as_slice());
+    } else {
+        concat[0..32].copy_from_slice(b.as_slice());
+        concat[32..64].copy_from_slice(a.as_slice());
+    }
+    B256::from_slice(&keccak256(&concat))
 }

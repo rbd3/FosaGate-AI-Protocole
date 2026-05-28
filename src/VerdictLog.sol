@@ -1,15 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
-
-/**
- * @title FosaGate AI Protocol
- * @notice Pre-Flight Evaluation Layer for Agent Transactions
- * @dev Contract : VerdictLog
- *      Author   : rbd3
- *      Chain    : Arbitrum One / Arbitrum Sepolia
- *      Version  : 1.0.0
- */
-
 import {IVerdictLog} from "./interfaces/IVerdictLog.sol";
 
 /// @title VerdictLog — Immutable On-Chain Evaluation Audit Trail

@@ -1,15 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-/**
- * @title FosaGate AI Protocol
- * @notice Pre-Flight Evaluation Layer for Agent Transactions
- * @dev Contract : AgentRegistry
- *      Author   : rbd3
- *      Chain    : Arbitrum One / Arbitrum Sepolia
- *      Version  : 1.0.0
- */
-
 import {IAgentRegistry} from "./interfaces/IAgentRegistry.sol";
 
 /// @title AgentRegistry — AI Agent Registration & Trust Management

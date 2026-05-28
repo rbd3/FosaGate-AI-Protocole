@@ -1,15 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-/**
- * @title FosaGate AI Protocol
- * @notice Pre-Flight Evaluation Layer for Agent Transactions
- * @dev Contract : FosaGateRouter
- *      Author   : rbd3
- *      Chain    : Arbitrum One / Arbitrum Sepolia
- *      Version  : 1.0.0
- */
-
 import {IFosaGateRouter} from "./interfaces/IFosaGateRouter.sol";
 import {IAgentRegistry} from "./interfaces/IAgentRegistry.sol";
 import {IVerdictLog} from "./interfaces/IVerdictLog.sol";
@@ -18,7 +9,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 
 /// @title FosaGateRouter — Main Gateway for Agent Transaction Evaluation
-/// @author rbd3
+/// @author :rbd3
 /// @notice The single entry point for all AI agent transactions. Agents submit
 ///         transactions with a signed attestation from the off-chain evaluator.
 ///         The router verifies the attestation via RiskEngine (Stylus), checks

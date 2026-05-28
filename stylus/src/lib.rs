@@ -1,17 +1,15 @@
-// ╔═══════════════════════════════════════════════════════════════════════════╗
-// ║                          FosaGate AI Protocol                           ║
-// ║           Pre-Flight Evaluation Layer for Agent Transactions            ║
-// ║                                                                         ║
-// ║  Contract : RiskEngine (Stylus / Rust → WASM)                           ║
-// ║  Author   : rbd3                                                        ║
-// ║  Chain    : Arbitrum One / Arbitrum Sepolia                              ║
-// ║  Version  : 1.0.0                                                       ║
-// ║                                                                         ║
-// ║  Purpose  : Performance-critical operations compiled to WASM via        ║
-// ║             Arbitrum Stylus. Handles ECDSA attestation verification,    ║
-// ║             composite risk scoring, and Merkle-based blacklist checks.  ║
-// ║             ~10x gas savings vs equivalent Solidity for batch ops.      ║
-// ╚═══════════════════════════════════════════════════════════════════════════╝
+// FosaGate AI Protocol
+// Pre-Flight Evaluation Layer for Agent Transactions
+//
+// Contract : RiskEngine (Stylus / Rust → WASM)
+// Author   : rbd3
+// Chain    : Arbitrum One / Arbitrum Sepolia
+// Version  : 1.0.0
+//
+// Purpose  : Performance-critical operations compiled to WASM via
+//            Arbitrum Stylus. Handles ECDSA attestation verification,
+//            composite risk scoring, and Merkle-based blacklist checks.
+//            ~10x gas savings vs equivalent Solidity for batch ops.
 
 #![cfg_attr(not(feature = "export-abi"), no_main)]
 extern crate alloc;

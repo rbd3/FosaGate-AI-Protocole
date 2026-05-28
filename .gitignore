@@ -10,6 +10,18 @@ gas-snapshot
 # Stylus Rust artifacts
 stylus/target/
 
+# Off-chain Node artifacts
+off-chain/**/node_modules/
+off-chain/api/dist/
+off-chain/evaluator/dist/
+off-chain/**/coverage/
+off-chain/**/logs/
+off-chain/**/*.log
+off-chain/**/.env
+off-chain/**/.env.*
+!off-chain/**/.env.example
+!off-chain/**/.env.sample
+
 # Local configuration & environment variables
 .env
 .env.*
